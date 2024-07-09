@@ -5,9 +5,6 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-
-  color: #FFF;
-  background: #171717;
 }
 
 * {
@@ -21,4 +18,39 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.title {
+  font-size: 32px;
+}
+
+.test1 {
+  width: 400px;
+  padding: 1em;
+  height: auto;
+  border: 1px solid red;
+}
+.test2 {
+  width: 100%;
+  padding: 1em;
+  height: auto;
+  border: 2px solid darkgreen;
+}
+.test3 {
+  width: 300px;
+  padding: 1em;
+  height: auto;
+  border: 3px solid deeppink;
+}
+.test4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  width: 100%;
+  height: 70vh;
+  padding: 1em;
+  border: 3px solid #0d4ea2;
 }
