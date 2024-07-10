@@ -1,87 +1,1 @@
-import ShowTipsButton from './ShowTipsButton.tsx';
-import styles from './main.module.css';
-import { TipsProvider } from '@/app/main.ts';
-
-const App = () => {
-  const tips = [
-    {
-      idx: 4,
-      nodeId: 'test5',
-      text: 'test 5',
-    },
-    {
-      idx: 0,
-      nodeId: 'test1',
-      text: 'test 1',
-    },
-    {
-      idx: 1,
-      nodeId: 'test2',
-      text: 'test 2',
-    },
-    {
-      idx: 2,
-      nodeId: 'test3',
-      text: 'test 3',
-    },
-    {
-      idx: 5,
-      nodeId: 'test6',
-      text: 'test 6',
-    },
-    {
-      idx: 3,
-      nodeId: 'test4',
-      text: 'test 4',
-    },
-  ];
-
-  return (
-    <TipsProvider tips={tips}>
-      <div className={styles.main}>
-        <ShowTipsButton />
-        <h1 className={styles.title} id={'test1'}>
-          Hello world
-        </h1>
-
-        <div className={styles.test1} id={'test2'}>
-          <h4>Test #1</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam autem eum maiores nisi quisquam
-            suscipit voluptates. Dolorem, ipsa, maiores.
-          </p>
-        </div>
-
-        <div className={styles.test2} id={'test3'}>
-          <h4>Test #1</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam autem eum maiores nisi quisquam
-            suscipit voluptates. Dolorem, ipsa, maiores.
-          </p>
-        </div>
-
-        <div className={styles.test3}>
-          <h4 id={'test4'}>Test #1</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam autem eum maiores nisi quisquam
-            suscipit voluptates. Dolorem, ipsa, maiores.
-          </p>
-        </div>
-
-        <div className={styles.test4}>
-          <h4>Test #1</h4>
-          <p id={'test5'}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam autem eum maiores nisi quisquam
-            suscipit voluptates. Dolorem, ipsa, maiores.
-          </p>
-        </div>
-
-        <span style={{ border: '1px solid red', fontSize: 30 }} id={'test6'}>
-          hello
-        </span>
-      </div>
-    </TipsProvider>
-  );
-};
-
-export default App;
+import ShowTipsButton from './ShowTipsButton.tsx';import styles from './main.module.css';import { TipsProvider } from '@/app/main.ts';const App = () => {  const tips = [    {      idx: 4,      nodeId: 'test5',      text: 'Подсказка номер 1 и еще какой-то текст для проверки',    },    {      idx: 0,      nodeId: 'test1',      title: 'Пример заголовка',      text: 'Подсказка номер 1 и еще какой-то текст для проверки, очень круто использовать эту библиотеку',    },    {      idx: 1,      nodeId: 'test2',      text: 'Второй тестовый блок, большой по высоте блок с правым выравниванием',    },    {      idx: 2,      nodeId: 'test3',      text: 'Тестовый текст для широкого блока',    },    {      idx: 5,      nodeId: 'test6',      text: 'Блок с этим тесто очень короткий, поэтому я проверяю его ширину',    },    {      idx: 3,      nodeId: 'test4',      text: 'Тестовый текст для заголовка внутри блока',    },  ];  return (    <TipsProvider tips={tips} theme={'dark'}>      <div className={styles.main}>        <ShowTipsButton />        <h1 className={styles.title} id={'test1'}>          Hello world        </h1>        <div className={styles.test1} id={'test2'}>          <h4>Test #1</h4>          <p>            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias            aperiam autem eum maiores nisi quisquam suscipit voluptates.            Dolorem, ipsa, maiores.          </p>        </div>        <div className={styles.test2} id={'test3'}>          <h4>Test #1</h4>          <p>            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias            aperiam autem eum maiores nisi quisquam suscipit voluptates.            Dolorem, ipsa, maiores.          </p>        </div>        <div className={styles.test3}>          <h4 id={'test4'}>Test #1</h4>          <p>            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias            aperiam autem eum maiores nisi quisquam suscipit voluptates.            Dolorem, ipsa, maiores.          </p>        </div>        <div className={styles.test4}>          <h4>Test #1</h4>          <p id={'test5'}>            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias            aperiam autem eum maiores nisi quisquam suscipit voluptates.            Dolorem, ipsa, maiores.          </p>        </div>        <span style={{ border: '1px solid red', fontSize: 30 }} id={'test6'}>          hello        </span>      </div>    </TipsProvider>  );};export default App;

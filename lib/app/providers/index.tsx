@@ -1,13 +1,1 @@
-import { TipsProvider } from '@/app/context/tips.tsx';
-import { TipDataItem } from '@/shared/types';
-
-type Props = {
-  children: React.ReactNode;
-  tips: TipDataItem[];
-};
-
-const Provider = ({ children, tips }: Props) => {
-  return <TipsProvider tips={tips}>{children}</TipsProvider>;
-};
-
-export default Provider;
+import { TipsProvider } from '@/app/context/tips.tsx';import { TipDataItem } from '@/shared/types';import ThemeLayout from '@/widgets/theme-layout';import { useEffect } from 'react';type Props = {  children: React.ReactNode;  tips: TipDataItem[];  theme?: 'dark' | 'light';  primaryColor?: string;  tooltipBorderColor?: string;};const Provider = (props: Props) => {  // TODO: add theme  // TODO: support multilingualism  const { children, tips, primaryColor, tooltipBorderColor, theme } = props;  useEffect(() => {    if (primaryColor) {      document.documentElement.style.setProperty('--primary', primaryColor);    }    if (tooltipBorderColor) {      document.documentElement.style.setProperty(        '--tooltip-border',        tooltipBorderColor,      );    }  }, []);  return <TipsProvider tips={tips}>{children}</TipsProvider>;};export default Provider;
