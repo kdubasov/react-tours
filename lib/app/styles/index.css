@@ -1,1 +1,0 @@
-:root {   --dark: #2E304A;   --gray: #777888;   --light-gray: #D0D6E1;   --light: #EEF1F7;   --primary: #712cf9;   --tooltip-border: #FFE500;}* {   margin: 0;   padding: 0;   color: var(--dark);   outline-color: var(--primary);}
