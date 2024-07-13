@@ -1,1 +1,1 @@
-.wrapper {   padding: 1.25em 15%;   display: flex;   align-items: center;   justify-content: space-between;   border-bottom: 1px solid var(--gray-300);}.wrapper > nav {   display: flex;   gap: 25px;}.wrapper > nav > a {   color: var(--primary);   font-weight: 600;}
+.wrapper {  padding: 1.25em 15%;  display: flex;  align-items: center;  justify-content: space-between;  border-bottom: 1px solid var(--gray-300);}.wrapper > nav {  display: flex;  gap: 25px;}.wrapper > nav > a {  color: var(--primary);  font-weight: 600;}
