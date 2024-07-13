@@ -1,1 +1,54 @@
-name: Publish to npmon:  push:    branches:      - mainjobs:  publish:    runs-on: ubuntu-latest    strategy:      matrix:        node-version: [20]    steps:      - uses: actions/checkout@v4      - uses: pnpm/action-setup@v4        with:          version: 8      - name: Set up Node.js        uses: actions/setup-node@v4        with:          node-version: ${{ matrix.node-version }}          cache: 'pnpm'          registry-url: 'https://registry.npmjs.org'      - name: Authenticate to npm        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc      - name: Install dependencies        run: pnpm install      - name: Publish to npm        run: npm publish        env:          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main # Публиковать только при пуше в основную ветку
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: false
+
+      - name: Run Prettier
+        run: npm run format:check
+        continue-on-error: false
+
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Authenticate to npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
