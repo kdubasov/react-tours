@@ -1,17 +1,18 @@
 # React-tips
 `🎉 A library for creating step-by-step hints in your applications`
 
----------
-
 ![preview](https://github.com/user-attachments/assets/5a29e1ec-dd68-4de0-b233-36fa112f14d2)
+
+## Custom tehmes
 ![light-tt](https://github.com/user-attachments/assets/b7664ff2-6bfa-41e1-aad9-8d3c08dae7e0)
 ![dark-tt](https://github.com/user-attachments/assets/80f9d7ae-ed87-4bf4-931d-051251f095e1)
+
+## Custom colors
 ![custom-colors](https://github.com/user-attachments/assets/50acbfc2-0908-4055-834e-cc4dcec5fe6d)
 
 
 ## Installation
 
----------
 `npm install --save react-tips`
 `yarn add react-tips`
 
