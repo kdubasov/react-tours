@@ -18,7 +18,6 @@
 
 ## Features
 
----------
 - Easy to install in any application (installation time up to 10 minutes)
 - Full customization
 - Light/dark mode support out of the box
@@ -27,8 +26,6 @@
 - Animations and smoothness out of the box
 
 ## The gist
-
----------
 
 ```javascript
     import React from 'react';
