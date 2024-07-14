@@ -11,7 +11,7 @@
   ],
   "author": "kdubasov",
   "private": false,
-  "version": "1.2.3",
+  "version": "1.2.4",
   "license": "ISC",
   "homepage": "https://github.com/kdubasov/react-tours#readme",
   "type": "module",

@@ -65,9 +65,9 @@ const TipsActiveLayout = ({ data }: Props) => {
     const stopPropagation = (e: Event) => {
       e.stopPropagation();
     };
-    element.addEventListener('click', stopPropagation);
+    element.addEventListener('mousedown', stopPropagation);
     return () => {
-      element.removeEventListener('click', stopPropagation);
+      element.removeEventListener('mousedown', stopPropagation);
     };
   }, [ref?.current]);
 
