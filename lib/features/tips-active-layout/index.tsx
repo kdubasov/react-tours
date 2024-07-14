@@ -4,6 +4,7 @@ import { useEscapeListener } from '@/shared/hooks/useEscapeListener.ts';
 import { useTips } from '@/shared/hooks/useTips.tsx';
 import { TipDataItemWithNode } from '@/shared/types';
 import { useEffect, useState, useTransition } from 'react';
+import { createPortal } from 'react-dom';
 
 type Props = {
   data: TipDataItemWithNode[];
@@ -55,7 +56,7 @@ const TipsActiveLayout = ({ data }: Props) => {
 
   useEscapeListener(!!escapeToClose);
 
-  return (
+  return createPortal(
     <div className={`${styles.wrapper} ${theme === 'dark' ? styles.dark : ''}`} id="tips-active-wrapper">
       <div className={styles.relative}>
         <div
@@ -82,7 +83,8 @@ const TipsActiveLayout = ({ data }: Props) => {
           />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };
 

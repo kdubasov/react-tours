@@ -1,6 +1,5 @@
 import { useTips } from '@/app/main.ts';
 import TipsActiveLayout from '@/features/tips-active-layout';
-import { createPortal } from 'react-dom';
 
 type Props = {
   children: React.ReactNode;
@@ -8,12 +7,11 @@ type Props = {
 
 const TipsLayout = ({ children }: Props) => {
   const { data, isShow } = useTips();
-  return createPortal(
+  return (
     <>
       {isShow && data && <TipsActiveLayout data={data.filter((elem) => elem.node).sort((a, b) => a.idx - b.idx)} />}
       {children}
-    </>,
-    document.body,
+    </>
   );
 };
 
