@@ -37,7 +37,7 @@
 
 ```javascript
 import React from 'react';
-import { Provider, useTips } from 'react-tours';
+import { TipsProvider, useTips } from 'react-custom-tours/dist/app/main';
 
 function App() {
   const { setShow } = useTips(); // you should use this hook inside the provider
@@ -60,7 +60,7 @@ function App() {
 }
 
 function Main() {
-  <Provider
+  <TipsProvider
     tips={[
       {
         idx: 1, // decent number of tip playback
@@ -80,6 +80,6 @@ function Main() {
     escapeToClose // adding closing tour using escape keydown (optional)
   >
     <App />
-  </Provider>;
+  </TipsProvider>;
 }
 ```
