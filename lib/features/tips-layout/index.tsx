@@ -9,7 +9,7 @@ const TipsLayout = ({ children }: Props) => {
   const { data, isShow } = useTips();
   return (
     <>
-      {isShow && data && <TipsActiveLayout data={data.filter((elem) => elem.node).sort((a, b) => a.idx - b.idx)} />}
+      {isShow && data && <TipsActiveLayout data={data.filter((elem) => elem?.node).sort((a, b) => a.idx - b.idx)} />}
       {children}
     </>
   );

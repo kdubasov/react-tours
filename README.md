@@ -1,5 +1,7 @@
 # React-tips 👩‍🏫🆘🔖
 
+## Currently the library is in testing mode, please use it in production mode of your projects! In the coming days, the library will be completely covered with autotests and tested in production builds of large projects! Thanks for understanding!
+
 🎉 A library for creating step-by-step hints in your applications ([Click to open in npm](https://www.npmjs.com/package/react-custom-tours))
 
 ### Preview GIF:
