@@ -3,7 +3,7 @@ import Tooltip from '@/features/tooltip';
 import { useEscapeListener } from '@/shared/hooks/useEscapeListener.ts';
 import { useTips } from '@/shared/hooks/useTips.tsx';
 import { TipDataItemWithNode } from '@/shared/types';
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useRef, useState, useTransition } from 'react';
 import { createPortal } from 'react-dom';
 
 type Props = {
@@ -11,24 +11,27 @@ type Props = {
 };
 
 const TipsActiveLayout = ({ data }: Props) => {
-  const { setIsShow, theme, escapeToClose, parentNode } = useTips();
+  const { setIsShow, theme, escapeToClose } = useTips();
   const [isLoading, startTransition] = useTransition();
   const [activeItem, setActiveItem] = useState<TipDataItemWithNode>(data[0]);
   const [activeItemRect, setActiveItemRect] = useState<DOMRect>(activeItem.node!.getBoundingClientRect());
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const nextItem = data[data.indexOf(activeItem) + 1];
   const prevItem = data[data.indexOf(activeItem) - 1];
 
-  const onNext = () =>
+  const onNext = () => {
     startTransition(() => {
       setActiveItem(nextItem);
       setActiveItemRect(nextItem.node!.getBoundingClientRect());
     });
-  const onPrev = () =>
+  };
+  const onPrev = () => {
     startTransition(() => {
       setActiveItem(prevItem);
       setActiveItemRect(prevItem.node!.getBoundingClientRect());
     });
+  };
   const onClose = () => {
     setActiveItemRect(data[0].node!.getBoundingClientRect());
     setIsShow(false);
@@ -56,8 +59,20 @@ const TipsActiveLayout = ({ data }: Props) => {
 
   useEscapeListener(!!escapeToClose);
 
+  useEffect(() => {
+    const element = ref?.current;
+    if (!element) return;
+    const stopPropagation = (e: Event) => {
+      e.stopPropagation();
+    };
+    element.addEventListener('click', stopPropagation);
+    return () => {
+      element.removeEventListener('click', stopPropagation);
+    };
+  }, [ref?.current]);
+
   return createPortal(
-    <div className={`${styles.wrapper} ${theme === 'dark' ? styles.dark : ''}`} id="tips-active-wrapper">
+    <div className={`${styles.wrapper} ${theme === 'dark' ? styles.dark : ''}`} id="tips-active-wrapper" ref={ref}>
       <div className={styles.relative}>
         <div
           className={styles.block}
@@ -84,7 +99,7 @@ const TipsActiveLayout = ({ data }: Props) => {
         </div>
       </div>
     </div>,
-    parentNode,
+    document.body,
   );
 };
 
