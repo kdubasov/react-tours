@@ -33,11 +33,6 @@ const TipsActiveLayout = ({ data }: Props) => {
       setActiveItemRect(prevItem.node!.getBoundingClientRect());
     });
   };
-  const onClose = () => {
-    setActiveItem(data[0]);
-    setActiveItemRect(data[0].node!.getBoundingClientRect());
-    setIsShow(false);
-  };
 
   useEffect(() => {
     const onWindowSizeUpdate = () => {
@@ -58,6 +53,11 @@ const TipsActiveLayout = ({ data }: Props) => {
       inline: 'nearest',
     });
   }, [activeItem]);
+
+  useEffect(() => {
+    setActiveItem(data[0]);
+    setActiveItemRect(data[0].node!.getBoundingClientRect());
+  }, [data]);
 
   useEscapeListener(!!escapeToClose);
   usePropsColors(ref);
@@ -96,7 +96,7 @@ const TipsActiveLayout = ({ data }: Props) => {
             prevItem={prevItem}
             onNext={onNext}
             onPrev={onPrev}
-            onClose={onClose}
+            onClose={() => setIsShow(false)}
             isLoading={isLoading}
           />
         </div>

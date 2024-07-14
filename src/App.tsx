@@ -13,7 +13,7 @@ const App = () => {
     <main className={styles.wrapper} ref={ref}>
       <MenuFeedback />
       <Navbar />
-      <Provider tips={tips} theme={'dark'} primaryColor={'#0dcaf0'} tooltipBorderColor={'#dc3545'}>
+      <Provider tips={tips} theme={'dark'} primaryColor={'#0dcaf0'} tooltipBorderColor={'#dc3545'} escapeToClose>
         <TestBlocks />
       </Provider>
     </main>
