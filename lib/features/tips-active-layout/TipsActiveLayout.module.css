@@ -28,7 +28,7 @@
 
 .block {
   will-change: auto;
-  position: absolute;
+  position: fixed;
   border-radius: 5px;
   border: 1px solid var(--tooltip-border);
   box-shadow: 0 0 0 100000px rgba(0, 0, 0, 0.5);
