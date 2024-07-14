@@ -11,7 +11,7 @@ type Props = {
 };
 
 const TipsActiveLayout = ({ data }: Props) => {
-  const { setIsShow, theme, escapeToClose } = useTips();
+  const { setIsShow, theme, escapeToClose, parentNode } = useTips();
   const [isLoading, startTransition] = useTransition();
   const [activeItem, setActiveItem] = useState<TipDataItemWithNode>(data[0]);
   const [activeItemRect, setActiveItemRect] = useState<DOMRect>(activeItem.node!.getBoundingClientRect());
@@ -84,7 +84,7 @@ const TipsActiveLayout = ({ data }: Props) => {
         </div>
       </div>
     </div>,
-    document.body,
+    parentNode || document.body,
   );
 };
 

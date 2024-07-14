@@ -4,6 +4,7 @@ import { TipDataItem } from '@/shared/types';
 type Props = {
   children: React.ReactNode;
   tips: TipDataItem[];
+  parentNode?: HTMLElement;
   theme?: 'dark' | 'light';
   primaryColor?: string;
   tooltipBorderColor?: string;
@@ -12,8 +13,7 @@ type Props = {
 
 const Provider = (props: Props) => {
   // TODO: add tests
-  // TODO: add README
-  const { children, tips, primaryColor, tooltipBorderColor, theme, escapeToClose } = props;
+  const { children, tips, primaryColor, tooltipBorderColor, theme, escapeToClose, parentNode } = props;
 
   return (
     <TipsProvider
@@ -22,6 +22,7 @@ const Provider = (props: Props) => {
       primaryColor={primaryColor}
       tooltipBorderColor={tooltipBorderColor}
       escapeToClose={escapeToClose}
+      parentNode={parentNode}
     >
       {children}
     </TipsProvider>

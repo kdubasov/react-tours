@@ -8,11 +8,13 @@ type AuthContext = {
   setIsShow: Dispatch<SetStateAction<boolean>>;
   theme?: 'dark' | 'light';
   escapeToClose?: boolean;
+  parentNode?: HTMLElement;
 };
 
 type Props = {
   children: ReactNode;
   tips: TipDataItem[];
+  parentNode?: HTMLElement;
   theme?: 'dark' | 'light';
   primaryColor?: string;
   tooltipBorderColor?: string;
@@ -22,7 +24,7 @@ type Props = {
 export const TipsContext = createContext<AuthContext>({} as AuthContext);
 
 export const TipsProvider = (props: Props) => {
-  const { children, tips, theme, primaryColor, tooltipBorderColor, escapeToClose } = props;
+  const { children, tips, theme, primaryColor, tooltipBorderColor, escapeToClose, parentNode } = props;
   const [data, setData] = useState<null | TipDataItemWithNode[]>(null);
   const [isShow, setIsShow] = useState(false);
 
@@ -53,9 +55,10 @@ export const TipsProvider = (props: Props) => {
       isShow,
       theme,
       escapeToClose,
+      parentNode,
       setIsShow,
     }),
-    [data, isShow, theme, escapeToClose, setIsShow],
+    [data, isShow, theme, escapeToClose, setIsShow, parentNode],
   );
 
   return (
