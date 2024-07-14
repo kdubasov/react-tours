@@ -1,8 +1,8 @@
 # React-tips 👩‍🏫🆘🔖
 
-## Currently the library is in testing mode, please use it in production mode of your projects! In the coming days, the library will be completely covered with autotests and tested in production builds of large projects! Thanks for understanding!
-
 🎉 A library for creating step-by-step hints in your applications ([Click to open in npm](https://www.npmjs.com/package/react-custom-tours))
+🧪 Tested on projects in production (autotests will appear soon)
+⭐ I would be grateful if you put a star on the [GitHub repo](https://github.com/kdubasov/react-tours)
 
 ### Preview GIF:
 
@@ -24,12 +24,13 @@
 
 ## Features 💫:
 
-- Easy to install in any application (installation time up to 10 minutes)
-- Full customization
-- Light/dark mode support out of the box
-- Adaptable to all screen sizes
-- Keyboard control support
-- Animations and smoothness out of the box
+- Easy to install in any application (installation time up to 10 minutes);
+- Full customization;
+- Light/dark mode support out of the box;
+- Adaptable to all screen sizes;
+- Keyboard control support;
+- Animations and smoothness out of the box;
+- Can be connected to any components. Also, modal windows with closing on the mousedown event will work, since this event has a stopPropagation listener;
 
 ## The gist 👩‍💻:
 
