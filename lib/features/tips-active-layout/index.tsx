@@ -84,7 +84,7 @@ const TipsActiveLayout = ({ data }: Props) => {
         </div>
       </div>
     </div>,
-    parentNode || document.body,
+    parentNode,
   );
 };
 
