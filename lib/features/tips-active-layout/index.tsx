@@ -1,6 +1,7 @@
 import styles from '@/features/tips-active-layout/TipsActiveLayout.module.css';
 import Tooltip from '@/features/tooltip';
 import { useEscapeListener } from '@/shared/hooks/useEscapeListener.ts';
+import { usePropsColors } from '@/shared/hooks/usePropsColors.ts';
 import { useTips } from '@/shared/hooks/useTips.tsx';
 import { TipDataItemWithNode } from '@/shared/types';
 import { useEffect, useRef, useState, useTransition } from 'react';
@@ -58,6 +59,7 @@ const TipsActiveLayout = ({ data }: Props) => {
   }, [activeItem]);
 
   useEscapeListener(!!escapeToClose);
+  usePropsColors(ref);
 
   useEffect(() => {
     const element = ref?.current;
@@ -72,7 +74,7 @@ const TipsActiveLayout = ({ data }: Props) => {
   }, [ref?.current]);
 
   return createPortal(
-    <div className={`${styles.wrapper} ${theme === 'dark' ? styles.dark : ''}`} id="tips-active-wrapper" ref={ref}>
+    <div className={`${styles.wrapper} ${theme === 'dark' ? styles.dark : ''}`} ref={ref}>
       <div className={styles.relative}>
         <div
           className={styles.block}
