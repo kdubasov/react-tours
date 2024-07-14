@@ -2,7 +2,8 @@ import styles from './TestBlocks.module.css';
 import { useTips } from '@/app/main.ts';
 
 const TestBlocks = () => {
-  const { setIsShow } = useTips();
+  const { setIsShow, data } = useTips();
+  console.log(data);
 
   return (
     <div className={styles.wrapper}>

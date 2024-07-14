@@ -27,13 +27,14 @@ export const TipsProvider = (props: Props) => {
   const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
+    if (!isShow) return;
     setData(
       tips.map((elem) => ({
         ...elem,
         node: document.getElementById(elem.nodeId),
       })),
     );
-  }, [tips]);
+  }, [tips, isShow]);
 
   useEffect(() => {
     if ((!primaryColor && !tooltipBorderColor) || !isShow) return;
