@@ -34,19 +34,20 @@ const TipsActiveLayout = ({ data }: Props) => {
     });
   };
   const onClose = () => {
+    setActiveItem(data[0]);
     setActiveItemRect(data[0].node!.getBoundingClientRect());
     setIsShow(false);
   };
 
   useEffect(() => {
-    const onScroll = () => {
+    const onWindowSizeUpdate = () => {
       setActiveItemRect(activeItem.node!.getBoundingClientRect());
     };
-    window.addEventListener('resize', onScroll);
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('resize', onWindowSizeUpdate);
+    window.addEventListener('scroll', onWindowSizeUpdate);
     return () => {
-      window.removeEventListener('resize', onScroll);
-      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onWindowSizeUpdate);
+      window.removeEventListener('scroll', onWindowSizeUpdate);
     };
   }, [activeItem]);
 
