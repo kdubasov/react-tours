@@ -15,7 +15,7 @@ const TipsActiveLayout = ({ data }: Props) => {
   const { setIsShow, theme, escapeToClose } = useTips();
   const [isLoading, startTransition] = useTransition();
   const [activeItem, setActiveItem] = useState<TipDataItemWithNode>(data[0]);
-  const [activeItemRect, setActiveItemRect] = useState<DOMRect>(activeItem.node!.getBoundingClientRect());
+  const [activeItemRect, setActiveItemRect] = useState<DOMRect>(activeItem?.node!.getBoundingClientRect());
   const ref = useRef<HTMLDivElement | null>(null);
 
   const nextItem = data[data.indexOf(activeItem) + 1];
@@ -24,19 +24,19 @@ const TipsActiveLayout = ({ data }: Props) => {
   const onNext = () => {
     startTransition(() => {
       setActiveItem(nextItem);
-      setActiveItemRect(nextItem.node!.getBoundingClientRect());
+      setActiveItemRect(nextItem?.node!.getBoundingClientRect());
     });
   };
   const onPrev = () => {
     startTransition(() => {
       setActiveItem(prevItem);
-      setActiveItemRect(prevItem.node!.getBoundingClientRect());
+      setActiveItemRect(prevItem?.node!.getBoundingClientRect());
     });
   };
 
   useEffect(() => {
     const onWindowSizeUpdate = () => {
-      setActiveItemRect(activeItem.node!.getBoundingClientRect());
+      setActiveItemRect(activeItem?.node!.getBoundingClientRect());
     };
     window.addEventListener('resize', onWindowSizeUpdate);
     window.addEventListener('scroll', onWindowSizeUpdate);
@@ -47,7 +47,7 @@ const TipsActiveLayout = ({ data }: Props) => {
   }, [activeItem]);
 
   useEffect(() => {
-    activeItem.node?.scrollIntoView({
+    activeItem?.node?.scrollIntoView({
       behavior: 'smooth',
       block: activeItemRect.height > window.innerHeight - 200 ? 'start' : 'center',
       inline: 'nearest',
@@ -56,7 +56,7 @@ const TipsActiveLayout = ({ data }: Props) => {
 
   useEffect(() => {
     setActiveItem(data[0]);
-    setActiveItemRect(data[0].node!.getBoundingClientRect());
+    setActiveItemRect(data[0]?.node!.getBoundingClientRect());
   }, [data]);
 
   useEscapeListener(!!escapeToClose);
@@ -84,7 +84,7 @@ const TipsActiveLayout = ({ data }: Props) => {
             height: activeItemRect.height,
             left: activeItemRect.left,
             top: activeItemRect.top,
-            borderRadius: activeItem.node?.style.borderRadius,
+            borderRadius: activeItem?.node?.style.borderRadius,
           }}
         >
           <Tooltip

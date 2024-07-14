@@ -1,6 +1,6 @@
 # React-tips 👩‍🏫🆘🔖
 
-🪲 We recommend installing version starting from 1.3.3 (previous versions have problems) <br>
+🪲 We recommend installing version starting from 1.3.5 (previous versions have problems) <br>
 🎉 A library for creating step-by-step hints in your applications ([Click to open in npm](https://www.npmjs.com/package/react-custom-tours))<br>
 🧪 Tested on projects in production (autotests will appear soon) <br>
 ⭐ I would be grateful if you put a star on the [GitHub repo](https://github.com/kdubasov/react-tours)
