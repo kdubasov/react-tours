@@ -1,4 +1,4 @@
-# React-tips 👩‍🏫🆘🔖
+# React-custom-tours 👩‍🏫🆘🔖
 
 🪲 We recommend installing version starting from 1.3.6 (previous versions have problems) <br>
 🎉 A library for creating step-by-step hints in your applications ([Click to open in npm](https://www.npmjs.com/package/react-custom-tours))<br>
@@ -20,8 +20,9 @@
 
 ## Installation 🔥:
 
-`npm install --save react-tours`
-`yarn add react-tours`
+`npm install react-custom-tours`
+`pnpm install react-custom-tours`
+`yarn add react-custom-tours`
 
 ## Features 💫:
 
@@ -83,3 +84,8 @@ function Main() {
   </TipsProvider>;
 }
 ```
+
+## Projects that use this library 👍:
+
+- [Merlin Clone](https://merlinclone.com/ru)
+- [Quick Offer](https://job-searcher.ru)
