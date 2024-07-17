@@ -79,6 +79,7 @@ function Main() {
     primaryColor="#0dcaf0" // your app primary color (optional)
     tooltipBorderColor="#ffc107" // any color of your choice to highlight the block outline (optional)
     escapeToClose // adding closing tour using escape keydown (optional)
+    isHiddenClose={true} // hide the close tour button until the last step (optional, default = false) (added in v1.3.8)
   >
     <App />
   </TipsProvider>;

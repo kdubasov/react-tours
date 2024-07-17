@@ -10,6 +10,7 @@ type AuthContext = {
   escapeToClose?: boolean;
   primaryColor?: string;
   tooltipBorderColor?: string;
+  isHiddenClose?: boolean;
 };
 
 type Props = {
@@ -19,12 +20,13 @@ type Props = {
   primaryColor?: string;
   tooltipBorderColor?: string;
   escapeToClose?: boolean;
+  isHiddenClose?: boolean;
 };
 
 export const TipsContext = createContext<AuthContext>({} as AuthContext);
 
 export const TipsProvider = (props: Props) => {
-  const { children, tips, theme, primaryColor, tooltipBorderColor, escapeToClose } = props;
+  const { children, tips, theme, primaryColor, tooltipBorderColor, escapeToClose, isHiddenClose } = props;
   const [data, setData] = useState<null | TipDataItemWithNode[]>(null);
   const [isShow, setIsShow] = useState(false);
 
@@ -46,9 +48,10 @@ export const TipsProvider = (props: Props) => {
       escapeToClose,
       primaryColor,
       tooltipBorderColor,
+      isHiddenClose,
       setIsShow,
     }),
-    [data, isShow, theme, escapeToClose, setIsShow, primaryColor, tooltipBorderColor],
+    [data, isShow, theme, escapeToClose, setIsShow, primaryColor, tooltipBorderColor, isHiddenClose],
   );
 
   return (

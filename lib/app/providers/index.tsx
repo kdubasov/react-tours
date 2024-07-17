@@ -8,11 +8,12 @@ type Props = {
   primaryColor?: string;
   tooltipBorderColor?: string;
   escapeToClose?: boolean;
+  isHiddenClose?: boolean;
 };
 
 const Provider = (props: Props) => {
   // TODO: add tests
-  const { children, tips, primaryColor, tooltipBorderColor, theme, escapeToClose } = props;
+  const { children, tips, primaryColor, tooltipBorderColor, theme, escapeToClose, isHiddenClose } = props;
 
   return (
     <TipsProvider
@@ -21,6 +22,7 @@ const Provider = (props: Props) => {
       primaryColor={primaryColor}
       tooltipBorderColor={tooltipBorderColor}
       escapeToClose={escapeToClose}
+      isHiddenClose={isHiddenClose}
     >
       {children}
     </TipsProvider>
