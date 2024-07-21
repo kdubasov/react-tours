@@ -7,16 +7,16 @@
 
 ### Preview GIF:
 
-![preview](https://github.com/user-attachments/assets/5a29e1ec-dd68-4de0-b233-36fa112f14d2)
+![ScreenRecording2024-07-21at1 49 43PM-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4af0b92a-922b-4903-ac29-1bbeee428476)
 
 ### Custom themes 🌗:
 
-![light-tt](https://github.com/user-attachments/assets/b7664ff2-6bfa-41e1-aad9-8d3c08dae7e0)
-![dark-tt](https://github.com/user-attachments/assets/80f9d7ae-ed87-4bf4-931d-051251f095e1)
+![Screenshot 2024-07-21 at 1 48 34 PM](https://github.com/user-attachments/assets/6219edf6-72b1-4224-ad01-b7cfcab67926)
+![Screenshot 2024-07-21 at 1 47 54 PM](https://github.com/user-attachments/assets/7976574a-3a0c-470c-a8a0-f4354c7ab4ec)
 
 ### Custom colors 💅:
 
-![custom-colors](https://github.com/user-attachments/assets/50acbfc2-0908-4055-834e-cc4dcec5fe6d)
+![Screenshot 2024-07-21 at 1 49 16 PM](https://github.com/user-attachments/assets/61d4318f-13a2-4473-8dd9-a8cec97d0160)
 
 ## Installation 🔥:
 
