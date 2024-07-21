@@ -6,18 +6,18 @@
   z-index: 9999;
 }
 .wrapper {
-  --dark: #4C4C4C;
-  --gray: #F0F0F0;
-  --light-gray: #FCFCFC;
-  --light: #FFFFFF;
-  --light-color: #D6D6D6;
-  --primary: #6E5FFC;
+  --dark: #4c4c4c;
+  --gray: #f0f0f0;
+  --light-gray: #fcfcfc;
+  --light: #ffffff;
+  --light-color: #d6d6d6;
+  --primary: #6e5ffc;
   --tooltip-border: #ffe500;
 }
 .wrapper.dark {
-  --dark: #FFFFFF;
+  --dark: #ffffff;
   --gray: #535353;
-  --light-gray: #3B3B3B;
+  --light-gray: #3b3b3b;
   --light: #474747;
   --light-color: #747474;
 }

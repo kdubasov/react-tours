@@ -40,8 +40,8 @@
   background: none;
   cursor: pointer;
   border: none;
-  transition: .15s;
-  opacity: .35;
+  transition: 0.15s;
+  opacity: 0.35;
 }
 .close > svg {
   scale: 1.4;
@@ -110,12 +110,12 @@
   border: 1px solid var(--gray);
 }
 .footer > button:first-child:disabled > svg {
-  opacity: .5;
+  opacity: 0.5;
 }
 .footer > button:first-child:disabled:hover {
   border: 1px solid var(--gray);
 }
 .footer > button:last-child:disabled,
 .footer > button:last-child:hover {
-  opacity: .75;
+  opacity: 0.75;
 }

@@ -5,7 +5,7 @@
 🧪 Tested on projects in production (autotests will appear soon) <br>
 ⭐ I would be grateful if you put a star on the [GitHub repo](https://github.com/kdubasov/react-tours)
 
-### Preview GIF:
+### Preview GIF 📹:
 
 ![ScreenRecording2024-07-21at1 49 43PM-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4af0b92a-922b-4903-ac29-1bbeee428476)
 
