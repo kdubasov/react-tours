@@ -27,6 +27,7 @@
   gap: 12px;
 }
 .count {
+  margin: 0;
   font-size: 14px;
   font-weight: 700;
   color: var(--light-color);
@@ -53,12 +54,13 @@
 
 /*text*/
 .textWrapper > h4 {
-  margin-bottom: 5px;
+  margin: 0 0 5px 0;
   color: var(--dark);
   font-size: 18px;
   font-weight: 700;
 }
 .textWrapper > p {
+  margin: 0;
   font-size: 14px;
   line-height: 120%;
 }
