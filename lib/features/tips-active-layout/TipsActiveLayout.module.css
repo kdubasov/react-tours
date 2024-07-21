@@ -6,18 +6,20 @@
   z-index: 9999;
 }
 .wrapper {
-  --dark: #2e304a;
-  --gray: #777888;
-  --light-gray: #d0d6e1;
-  --light: #eef1f7;
-  --primary: #712cf9;
+  --dark: #4C4C4C;
+  --gray: #F0F0F0;
+  --light-gray: #FCFCFC;
+  --light: #FFFFFF;
+  --light-color: #D6D6D6;
+  --primary: #6E5FFC;
   --tooltip-border: #ffe500;
 }
 .wrapper.dark {
-  --dark: #eef1f7;
-  --gray: #d0d6e1;
-  --light-gray: #777888;
-  --light: #222;
+  --dark: #FFFFFF;
+  --gray: #535353;
+  --light-gray: #3B3B3B;
+  --light: #474747;
+  --light-color: #747474;
 }
 
 .relative {
