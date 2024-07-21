@@ -92,6 +92,7 @@
   color: var(--light);
   background: var(--primary);
   border: 1px solid var(--primary);
+  outline-color: var(--dark);
 }
 .footer > button:active {
   opacity: 0.85;
