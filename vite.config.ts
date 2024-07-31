@@ -13,6 +13,13 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'lib') }],
   },
+  server: {
+    host: true,
+    port: 3000,
+  },
+  preview: {
+    port: 3000,
+  },
   build: {
     copyPublicDir: false,
     lib: {
