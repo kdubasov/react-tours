@@ -26,3 +26,7 @@ dist-ssr
 *.sln
 *.sw?
 workspace.code-workspace
+
+# tests
+playwright-report/
+test-results/
