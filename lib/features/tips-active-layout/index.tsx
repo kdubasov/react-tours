@@ -75,7 +75,11 @@ const TipsActiveLayout = ({ data }: Props) => {
   }, [ref?.current]);
 
   return createPortal(
-    <div className={`${styles.wrapper} ${theme === 'dark' ? styles.dark : ''}`} ref={ref}>
+    <div
+      className={`${styles.wrapper} ${theme === 'dark' ? styles.dark : ''}`}
+      ref={ref}
+      data-testid="tips-active-layout"
+    >
       <div className={styles.relative}>
         <div
           className={styles.block}
