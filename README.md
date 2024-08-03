@@ -2,7 +2,8 @@
 
 🪲 We recommend installing version starting from 1.3.6 (previous versions have problems) <br>
 🎉 A library for creating step-by-step hints in your applications ([Click to open in npm](https://www.npmjs.com/package/react-custom-tours))<br>
-🧪 Tested on projects in production (autotests will appear soon) <br>
+🧪 Tested on projects in production <br>
+🔧 Before each update, the library is checked by autotests <br>
 ⭐ I would be grateful if you put a star on the [GitHub repo](https://github.com/kdubasov/react-tours)
 
 ### Preview GIF 📹:
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <div>
+      {/* click this button to start a tour */}
       <button onClick={() => setShow(true)}>Show tips!</button>
       <div id="tip-block">
         <h3>First block with tip!</h3>
