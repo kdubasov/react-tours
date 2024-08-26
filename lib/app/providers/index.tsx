@@ -12,7 +12,6 @@ type Props = {
 };
 
 const Provider = (props: Props) => {
-  // TODO: add tests
   const { children, tips, primaryColor, tooltipBorderColor, theme, escapeToClose, isHiddenClose } = props;
 
   return (
