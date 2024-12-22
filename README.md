@@ -91,4 +91,4 @@ function Main() {
 ## Projects that use this library 👍:
 
 - [Merlin Clone](https://merlinclone.com/ru)
-- [Quick Offer](https://job-searcher.ru)
+- [Quick Offer](https://quick-offer.ru)
