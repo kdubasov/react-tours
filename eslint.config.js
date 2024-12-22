@@ -36,6 +36,7 @@ export default [
   {
     rules: {
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off', // TODO: error if on
       'prettier/prettier': [
         'error',
         {
