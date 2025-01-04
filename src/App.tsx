@@ -1,19 +1,29 @@
 import styles from './App.module.css';
 import MenuFeedback from './widgets/menu-feedback';
-import Navbar from './widgets/navbar';
 import TestBlocks from './widgets/test-blocks';
 import { tips } from './widgets/test-blocks/tips.ts';
 import { TipsProvider } from '@/app/main.ts';
-import { useRef } from 'react';
 
 const App = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
-
   return (
-    <main className={styles.wrapper} ref={ref}>
+    <main className={styles.wrapper}>
       <MenuFeedback />
-      <Navbar />
-      <TipsProvider theme="dark" tips={tips} escapeToClose primaryColor={'#0dcaf0'} tooltipBorderColor={'#dc3545'}>
+      <TipsProvider
+        highlightPadding={10}
+        theme="light"
+        tips={tips}
+        escapeToClose
+        customColors={{
+          dark: {
+            primary: '#0dcaf0',
+            highlightBorder: '#dc3545',
+          },
+          light: {
+            primary: 'rgb(21,194,30)',
+            highlightBorder: 'rgba(158,113,255,0.42)',
+          },
+        }}
+      >
         <TestBlocks />
       </TipsProvider>
     </main>

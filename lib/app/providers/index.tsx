@@ -1,27 +1,27 @@
 import { TipsProvider } from '@/app/context/tips.tsx';
-import { TipDataItem } from '@/shared/types';
+import { CustomColors, TipDataItem } from '@/shared/types';
 
 type Props = {
   children: React.ReactNode;
   tips: TipDataItem[];
   theme?: 'dark' | 'light';
-  primaryColor?: string;
-  tooltipBorderColor?: string;
+  customColors?: CustomColors;
+  highlightPadding?: number; // in px
   escapeToClose?: boolean;
   isHiddenClose?: boolean;
 };
 
 const Provider = (props: Props) => {
-  const { children, tips, primaryColor, tooltipBorderColor, theme, escapeToClose, isHiddenClose } = props;
+  const { children, tips, customColors, theme, escapeToClose, isHiddenClose, highlightPadding } = props;
 
   return (
     <TipsProvider
       tips={tips}
       theme={theme}
-      primaryColor={primaryColor}
-      tooltipBorderColor={tooltipBorderColor}
+      customColors={customColors}
       escapeToClose={escapeToClose}
       isHiddenClose={isHiddenClose}
+      highlightPadding={highlightPadding}
     >
       {children}
     </TipsProvider>

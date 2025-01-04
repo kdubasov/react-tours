@@ -78,10 +78,20 @@ function Main() {
       },
     ]}
     theme="dark" // light is default (optional)
-    primaryColor="#0dcaf0" // your app primary color (optional)
-    tooltipBorderColor="#ffc107" // any color of your choice to highlight the block outline (optional)
+    customColors={{
+      // custom tooltip colors for dark/light themes
+      dark: {
+        primary: '#0dcaf0',
+        highlightBorder: '#dc3545',
+      },
+      light: {
+        primary: 'rgb(21,194,30)',
+        highlightBorder: 'rgba(158,113,255,0.42)',
+      },
+    }}
+    highlightPadding={10} // padding for highlighting current block
     escapeToClose // adding closing tour using escape keydown (optional)
-    isHiddenClose={true} // hide the close tour button until the last step (optional, default = false) (added in v1.3.8)
+    isHiddenClose // hide the close tour button until the last step (optional, default = false) (added in v1.3.8)
   >
     <App />
   </TipsProvider>;

@@ -26,11 +26,13 @@ body {
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #212529;
+
+  --rtc-dark: red;
 }
 
 * {
   margin: 0;
   padding: 0;
-  color: var(--dark);
-  outline-color: var(--primary);
+  color: var(--rct-dark);
+  outline-color: var(--rct-primary);
 }

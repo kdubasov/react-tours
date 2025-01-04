@@ -1,8 +1,14 @@
 import styles from './TestBlocks.module.css';
 import { useTips } from '@/app/main.ts';
 
+// import { useEffect } from 'react';
+
 const TestBlocks = () => {
   const { setIsShow } = useTips();
+
+  // useEffect(() => {
+  //   setIsShow(true);
+  // }, []);
 
   return (
     <div className={styles.wrapper}>

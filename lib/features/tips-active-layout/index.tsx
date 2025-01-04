@@ -12,7 +12,7 @@ type Props = {
 };
 
 const TipsActiveLayout = ({ data }: Props) => {
-  const { setIsShow, theme, escapeToClose } = useTips();
+  const { setIsShow, theme, escapeToClose, highlightPadding } = useTips();
   const [isLoading, startTransition] = useTransition();
   const [activeItem, setActiveItem] = useState<TipDataItemWithNode>(data[0]);
   const [activeItemRect, setActiveItemRect] = useState<DOMRect>(activeItem?.node!.getBoundingClientRect());
@@ -84,10 +84,10 @@ const TipsActiveLayout = ({ data }: Props) => {
         <div
           className={styles.block}
           style={{
-            width: activeItemRect.width,
-            height: activeItemRect.height,
-            left: activeItemRect.left,
-            top: activeItemRect.top,
+            width: activeItemRect.width + (highlightPadding || 0),
+            height: activeItemRect.height + (highlightPadding || 0),
+            left: activeItemRect.left - (highlightPadding ? highlightPadding / 2 : 0),
+            top: activeItemRect.top - (highlightPadding ? highlightPadding / 2 : 0),
             borderRadius: activeItem?.node?.style.borderRadius,
           }}
         >

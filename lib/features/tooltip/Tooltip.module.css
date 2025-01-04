@@ -9,10 +9,10 @@
   gap: 10px;
 
   border-radius: 8px;
-  background: var(--light-gray);
-  border: 1px solid var(--gray);
-  box-shadow: 0 0 12px 0 var(--light);
-  color: var(--dark);
+  background: var(--rct-light-gray);
+  border: 1px solid var(--rct-gray);
+  box-shadow: 0 0 8px 0 var(--rct-gray);
+  color: var(--rct-dark);
 }
 
 /*header*/
@@ -30,7 +30,7 @@
   margin: 0;
   font-size: 14px;
   font-weight: 700;
-  color: var(--light-color);
+  color: var(--rct-light-color);
 }
 .leftHeader > .loader {
   margin-bottom: -2px;
@@ -46,7 +46,7 @@
 }
 .close > svg {
   scale: 1.4;
-  fill: var(--dark);
+  fill: var(--rct-dark);
 }
 .close:hover {
   opacity: 1;
@@ -55,7 +55,7 @@
 /*text*/
 .textWrapper > h4 {
   margin: 0 0 5px 0;
-  color: var(--dark);
+  color: var(--rct-dark);
   font-size: 18px;
   font-weight: 700;
 }
@@ -80,9 +80,9 @@
   align-items: center;
   justify-content: center;
 
-  outline-color: var(--primary);
-  background: var(--light);
-  border: 1px solid var(--gray);
+  outline-color: var(--rct-primary);
+  background: var(--rct-light);
+  border: 1px solid var(--rct-gray);
   border-radius: 6px;
   scale: 1.15;
   transition: 0.15s;
@@ -91,10 +91,10 @@
   scale: 1.05;
 }
 .footer > button:last-child {
-  color: var(--light);
-  background: var(--primary);
-  border: 1px solid var(--primary);
-  outline-color: var(--dark);
+  color: var(--rct-light);
+  background: var(--rct-primary);
+  border: 1px solid var(--rct-primary);
+  outline-color: var(--rct-dark);
 }
 .footer > button:active {
   opacity: 0.85;
@@ -106,17 +106,17 @@
   cursor: no-drop;
 }
 .footer > button:first-child:hover {
-  border: 1px solid var(--primary);
+  border: 1px solid var(--rct-primary);
 }
 .footer > button:first-child:disabled {
-  background: var(--gray);
-  border: 1px solid var(--gray);
+  background: var(--rct-gray);
+  border: 1px solid var(--rct-gray);
 }
 .footer > button:first-child:disabled > svg {
   opacity: 0.5;
 }
 .footer > button:first-child:disabled:hover {
-  border: 1px solid var(--gray);
+  border: 1px solid var(--rct-gray);
 }
 .footer > button:last-child:disabled,
 .footer > button:last-child:hover {

@@ -31,8 +31,8 @@ const Spinner = () => {
           y2="14.1373"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="var(--primary)" />
-          <stop offset="1" stopColor="var(--primary)" stopOpacity="0.55" />
+          <stop stopColor="var(--rct-primary)" />
+          <stop offset="1" stopColor="var(--rct-primary)" stopOpacity="0.55" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1682_4718"
@@ -42,8 +42,8 @@ const Spinner = () => {
           y2="1168.57"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="var(--primary)" stopOpacity="0" />
-          <stop offset="1" stopColor="var(--primary)" stopOpacity="0.55" />
+          <stop stopColor="var(--rct-primary)" stopOpacity="0" />
+          <stop offset="1" stopColor="var(--rct-primary)" stopOpacity="0.55" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_1682_4718"
@@ -53,8 +53,8 @@ const Spinner = () => {
           y2="13.4277"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="var(--primary)" stopOpacity="0" />
-          <stop offset="1" stopColor="var(--primary)" stopOpacity="0.55" />
+          <stop stopColor="var(--rct-primary)" stopOpacity="0" />
+          <stop offset="1" stopColor="var(--rct-primary)" stopOpacity="0.55" />
         </linearGradient>
       </defs>
     </svg>

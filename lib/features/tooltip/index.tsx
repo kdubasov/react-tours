@@ -19,7 +19,7 @@ type Props = {
 
 const Tooltip = (props: Props) => {
   const { item, prevItem, nextItem, onPrev, onNext, onClose, itemRect, countItems, itemIdx, isLoading } = props;
-  const { isHiddenClose } = useTips();
+  const { isHiddenClose, highlightPadding } = useTips();
   const margin = 10;
   const style: CSSProperties = {};
 
@@ -28,6 +28,7 @@ const Tooltip = (props: Props) => {
     return countItems - 1 === itemIdx;
   }, [itemIdx, countItems, isHiddenClose]);
 
+  const highlightPaddingMargin = highlightPadding ?? 0;
   const xMargin = itemRect.left + itemRect.width / 2 > window.innerWidth / 2 ? 'right' : 'left';
   style.maxWidth = itemRect.right;
   if (itemRect.height > window.innerHeight - 200) {
@@ -35,9 +36,9 @@ const Tooltip = (props: Props) => {
     style[xMargin] = margin;
   } else {
     if (itemRect.top + itemRect.height / 2 > window.innerHeight / 2) {
-      style.bottom = itemRect.height + margin;
+      style.bottom = itemRect.height + margin + highlightPaddingMargin;
     } else {
-      style.top = itemRect.height + margin;
+      style.top = itemRect.height + margin + highlightPaddingMargin;
     }
     style[xMargin] = 0;
   }
@@ -93,7 +94,7 @@ const Tooltip = (props: Props) => {
           <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M8.42358 3.63123H0.923584M0.923584 3.63123L3.92358 0.631226M0.923584 3.63123L3.92358 6.63123"
-              stroke="var(--dark)"
+              stroke="var(--rct-dark)"
               strokeWidth="1.25"
               strokeLinecap="round"
               strokeLinejoin="round"
