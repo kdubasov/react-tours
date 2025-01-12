@@ -3,6 +3,7 @@ export type TipDataItem = {
   nodeId: string;
   title?: string;
   text: string;
+  maxWidth?: number;
 };
 
 export interface TipDataItemWithNode extends TipDataItem {

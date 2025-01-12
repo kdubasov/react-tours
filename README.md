@@ -75,6 +75,7 @@ function Main() {
         idx: 2,
         nodeId: 'tip-text',
         text: 'Text block tip text!',
+        maxWidth: 400, // max width of tooltip (in pixels)
       },
     ]}
     theme="dark" // light is default (optional)

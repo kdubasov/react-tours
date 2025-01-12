@@ -30,7 +30,7 @@ const Tooltip = (props: Props) => {
 
   const highlightPaddingMargin = highlightPadding ?? 0;
   const xMargin = itemRect.left + itemRect.width / 2 > window.innerWidth / 2 ? 'right' : 'left';
-  style.maxWidth = itemRect.right;
+  style.maxWidth = item?.maxWidth || itemRect.right;
   if (itemRect.height > window.innerHeight - 200) {
     style.top = margin;
     style[xMargin] = margin;
