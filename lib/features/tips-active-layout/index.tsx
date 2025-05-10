@@ -21,12 +21,26 @@ const TipsActiveLayout = ({ data }: Props) => {
   const prevItem = data[data.indexOf(activeItem) - 1];
 
   const onNext = () => {
+    if (activeItem?.onClick?.nextButton) {
+      activeItem?.onClick?.nextButton();
+    }
     setActiveItem(nextItem);
     setActiveItemRect(nextItem?.node!.getBoundingClientRect());
   };
+
   const onPrev = () => {
+    if (activeItem?.onClick?.prevButton) {
+      activeItem?.onClick?.prevButton();
+    }
     setActiveItem(prevItem);
     setActiveItemRect(prevItem?.node!.getBoundingClientRect());
+  };
+
+  const onClose = () => {
+    if (activeItem?.onClick?.closeButton) {
+      activeItem?.onClick?.closeButton();
+    }
+    setIsShow(false);
   };
 
   useEffect(() => {
@@ -95,7 +109,7 @@ const TipsActiveLayout = ({ data }: Props) => {
             prevItem={prevItem}
             onNext={onNext}
             onPrev={onPrev}
-            onClose={() => setIsShow(false)}
+            onClose={onClose}
           />
         </div>
       </div>

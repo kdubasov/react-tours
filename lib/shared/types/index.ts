@@ -4,6 +4,11 @@ export type TipDataItem = {
   title?: string;
   text: string;
   maxWidth?: number;
+  onClick?: {
+    nextButton?: () => void;
+    prevButton?: () => void;
+    closeButton?: () => void;
+  };
 };
 
 export interface TipDataItemWithNode extends TipDataItem {

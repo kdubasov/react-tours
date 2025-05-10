@@ -76,6 +76,12 @@ function Main() {
         nodeId: 'tip-text',
         text: 'Text block tip text!',
         maxWidth: 400, // max width of tooltip (in pixels)
+        onClick: {
+          // handlers for tooltip buttons
+          nextButton: () => console.log('next'),
+          prevButton: () => console.log('prev'),
+          closeButton: () => console.log('close'),
+        },
       },
     ]}
     theme="dark" // light is default (optional)

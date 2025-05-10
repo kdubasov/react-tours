@@ -4,12 +4,22 @@ export const tips = [
     nodeId: 'test-0',
     title: 'Start tour',
     text: 'This button enables the tour to be shown, but you can also do it automatically, for example use useEffect',
+    onClick: {
+      nextButton: () => console.log('next'),
+      prevButton: () => console.log('prev'),
+      closeButton: () => console.log('close'),
+    },
   },
   {
     idx: 1,
     nodeId: 'test-1',
     title: 'Tip #1',
     text: 'Example text for block',
+    onClick: {
+      nextButton: () => console.log('next1'),
+      prevButton: () => console.log('prev1'),
+      closeButton: () => console.log('close1'),
+    },
   },
   {
     idx: 2,
