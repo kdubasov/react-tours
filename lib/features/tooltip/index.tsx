@@ -1,18 +1,19 @@
 import styles from './Tooltip.module.css';
 import { useTips } from '@/shared/hooks/useTips.tsx';
+import { mockDomRect } from '@/shared/mock-data';
 import type { TipDataItemWithNode } from '@/shared/types';
 import { type CSSProperties, useMemo, useRef } from 'react';
 
 type Props = {
   item: TipDataItemWithNode;
   itemRect: DOMRect;
-  onNext: () => void;
-  onPrev: () => void;
-  onClose: () => void;
   prevItem: undefined | TipDataItemWithNode;
   nextItem: undefined | TipDataItemWithNode;
   countItems: number;
   itemIdx: number;
+  onNext: () => void;
+  onPrev: () => void;
+  onClose: () => void;
 };
 
 const Tooltip = (props: Props) => {
@@ -28,7 +29,7 @@ const Tooltip = (props: Props) => {
     return countItems - 1 === itemIdx;
   }, [itemIdx, countItems, isHiddenClose]);
 
-  const tooltipClientRect = tooltipRef?.current?.getBoundingClientRect();
+  const tooltipClientRect = tooltipRef?.current?.getBoundingClientRect() || mockDomRect;
   const tooltipWidth = tooltipClientRect?.width || 0;
   const highlightPaddingMargin = highlightPadding ?? 0;
   const itemRectRight = window.innerWidth - itemRect.right;

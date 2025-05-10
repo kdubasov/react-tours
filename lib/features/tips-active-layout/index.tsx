@@ -3,7 +3,8 @@ import Tooltip from '@/features/tooltip';
 import { useEscapeListener } from '@/shared/hooks/useEscapeListener.ts';
 import { usePropsColors } from '@/shared/hooks/usePropsColors.ts';
 import { useTips } from '@/shared/hooks/useTips.tsx';
-import { TipDataItemWithNode } from '@/shared/types';
+import type { TipDataItemWithNode } from '@/shared/types';
+import { getRectById } from '@/shared/utils/getRectById.ts';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -14,7 +15,7 @@ type Props = {
 const TipsActiveLayout = ({ data }: Props) => {
   const { setIsShow, theme, escapeToClose, highlightPadding } = useTips();
   const [activeItem, setActiveItem] = useState<TipDataItemWithNode>(data[0]);
-  const [activeItemRect, setActiveItemRect] = useState<DOMRect>(activeItem?.node!.getBoundingClientRect());
+  const [activeItemRect, setActiveItemRect] = useState<DOMRect>(getRectById(activeItem.nodeId));
   const ref = useRef<HTMLDivElement | null>(null);
 
   const nextItem = data[data.indexOf(activeItem) + 1];
@@ -25,7 +26,7 @@ const TipsActiveLayout = ({ data }: Props) => {
       activeItem?.onClick?.nextButton();
     }
     setActiveItem(nextItem);
-    setActiveItemRect(nextItem?.node!.getBoundingClientRect());
+    setActiveItemRect(getRectById(nextItem.nodeId));
   };
 
   const onPrev = () => {
@@ -33,7 +34,7 @@ const TipsActiveLayout = ({ data }: Props) => {
       activeItem?.onClick?.prevButton();
     }
     setActiveItem(prevItem);
-    setActiveItemRect(prevItem?.node!.getBoundingClientRect());
+    setActiveItemRect(getRectById(prevItem.nodeId));
   };
 
   const onClose = () => {
@@ -43,9 +44,13 @@ const TipsActiveLayout = ({ data }: Props) => {
     setIsShow(false);
   };
 
+  useEscapeListener(Boolean(escapeToClose));
+
+  usePropsColors(ref);
+
   useEffect(() => {
     const onWindowSizeUpdate = () => {
-      setActiveItemRect(activeItem?.node!.getBoundingClientRect());
+      setActiveItemRect(getRectById(activeItem.nodeId));
     };
     window.addEventListener('resize', onWindowSizeUpdate);
     window.addEventListener('scroll', onWindowSizeUpdate);
@@ -65,19 +70,20 @@ const TipsActiveLayout = ({ data }: Props) => {
 
   useEffect(() => {
     setActiveItem(data[0]);
-    setActiveItemRect(data[0]?.node!.getBoundingClientRect());
+    setActiveItemRect(getRectById(data[0]?.nodeId));
   }, [data]);
-
-  useEscapeListener(Boolean(escapeToClose));
-  usePropsColors(ref);
 
   useEffect(() => {
     const element = ref?.current;
+
     if (!element) return;
+
     const stopPropagation = (e: Event) => {
       e.stopPropagation();
     };
+
     element.addEventListener('mousedown', stopPropagation);
+
     return () => {
       element.removeEventListener('mousedown', stopPropagation);
     };
