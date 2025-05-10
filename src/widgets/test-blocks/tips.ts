@@ -18,7 +18,9 @@ export const tips = [
     title: 'Tip #1',
     text: 'Example text for block',
     onClick: {
-      nextButton: () => console.log('next1'),
+      nextButton: async () => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      },
       prevButton: () => console.log('prev1'),
       closeButton: () => console.log('close1'),
     },

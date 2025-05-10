@@ -35,7 +35,7 @@ const TipsActiveLayout = ({ data }: Props) => {
   const onPrev = async () => {
     if (activeItem?.onClick?.prevButton) {
       setIsLoading(true);
-      activeItem?.onClick?.prevButton();
+      await activeItem?.onClick?.prevButton();
       setIsLoading(false);
     }
     setActiveItem(prevItem);
