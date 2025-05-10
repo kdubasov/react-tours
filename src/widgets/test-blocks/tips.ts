@@ -5,7 +5,9 @@ export const tips = [
     title: 'Start tour',
     text: 'This button enables the tour to be shown, but you can also do it automatically, for example use useEffect',
     onClick: {
-      nextButton: () => console.log('next'),
+      nextButton: async () => {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      },
       prevButton: () => console.log('prev'),
       closeButton: () => console.log('close'),
     },

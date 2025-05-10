@@ -2,6 +2,7 @@ import styles from './Tooltip.module.css';
 import { useTips } from '@/shared/hooks/useTips.tsx';
 import { mockDomRect } from '@/shared/mock-data';
 import type { TipDataItemWithNode } from '@/shared/types';
+import Spinner from '@/shared/ui/spinner';
 import { type CSSProperties, useMemo, useRef } from 'react';
 
 type Props = {
@@ -11,13 +12,14 @@ type Props = {
   nextItem: undefined | TipDataItemWithNode;
   countItems: number;
   itemIdx: number;
+  isLoading: boolean;
   onNext: () => void;
   onPrev: () => void;
   onClose: () => void;
 };
 
 const Tooltip = (props: Props) => {
-  const { item, prevItem, nextItem, onPrev, onNext, onClose, itemRect, countItems, itemIdx } = props;
+  const { item, prevItem, nextItem, itemRect, countItems, itemIdx, isLoading, onPrev, onNext, onClose } = props;
   const { isHiddenClose, highlightPadding } = useTips();
   const margin = 10;
   const style: CSSProperties = {};
@@ -56,6 +58,7 @@ const Tooltip = (props: Props) => {
           <span className={styles.count} data-testid="tooltip-count" title={`Номер подсказки - (${tooltipIndex})`}>
             {tooltipIndex}
           </span>
+          {isLoading && <Spinner />}
         </div>
 
         {isShowClose && (
@@ -87,7 +90,7 @@ const Tooltip = (props: Props) => {
       <footer className={styles.footer}>
         {prevItem && (
           <button
-            disabled={!prevItem}
+            disabled={!prevItem || isLoading}
             onClick={onPrev}
             type="button"
             data-testid="tooltip-prev"
@@ -98,6 +101,7 @@ const Tooltip = (props: Props) => {
         )}
 
         <button
+          disabled={isLoading}
           title={nextItem ? 'Следующая подсказка' : 'Закрыть'}
           onClick={nextItem ? onNext : onClose}
           type="button"

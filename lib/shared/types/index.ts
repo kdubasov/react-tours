@@ -5,9 +5,9 @@ export type TipDataItem = {
   text: string;
   maxWidth?: number;
   onClick?: {
-    nextButton?: () => void;
-    prevButton?: () => void;
-    closeButton?: () => void;
+    nextButton?: () => Promise<void>;
+    prevButton?: () => Promise<void>;
+    closeButton?: () => Promise<void>;
   };
 };
 

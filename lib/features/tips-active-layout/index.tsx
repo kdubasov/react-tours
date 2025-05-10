@@ -17,29 +17,36 @@ const TipsActiveLayout = ({ data }: Props) => {
   const [activeItem, setActiveItem] = useState<TipDataItemWithNode>(data[0]);
   const [activeItemRect, setActiveItemRect] = useState<DOMRect>(getRectById(activeItem.nodeId));
   const ref = useRef<HTMLDivElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const nextItem = data[data.indexOf(activeItem) + 1];
   const prevItem = data[data.indexOf(activeItem) - 1];
 
-  const onNext = () => {
+  const onNext = async () => {
     if (activeItem?.onClick?.nextButton) {
-      activeItem?.onClick?.nextButton();
+      setIsLoading(true);
+      await activeItem?.onClick?.nextButton();
+      setIsLoading(false);
     }
     setActiveItem(nextItem);
     setActiveItemRect(getRectById(nextItem.nodeId));
   };
 
-  const onPrev = () => {
+  const onPrev = async () => {
     if (activeItem?.onClick?.prevButton) {
+      setIsLoading(true);
       activeItem?.onClick?.prevButton();
+      setIsLoading(false);
     }
     setActiveItem(prevItem);
     setActiveItemRect(getRectById(prevItem.nodeId));
   };
 
-  const onClose = () => {
+  const onClose = async () => {
     if (activeItem?.onClick?.closeButton) {
-      activeItem?.onClick?.closeButton();
+      setIsLoading(true);
+      await activeItem?.onClick?.closeButton();
+      setIsLoading(false);
     }
     setIsShow(false);
   };
@@ -107,6 +114,7 @@ const TipsActiveLayout = ({ data }: Props) => {
           }}
         >
           <Tooltip
+            isLoading={isLoading}
             countItems={data.length}
             itemIdx={data.indexOf(activeItem)}
             item={activeItem}

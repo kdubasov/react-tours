@@ -78,7 +78,9 @@ function Main() {
         maxWidth: 400, // max width of tooltip (in pixels)
         onClick: {
           // handlers for tooltip buttons
-          nextButton: () => console.log('next'),
+          nextButton: async () => {
+            await new Promise((resolve) => setTimeout(resolve, 2000));
+          }, // callback can be as promise and next step start after resolve
           prevButton: () => console.log('prev'),
           closeButton: () => console.log('close'),
         },

@@ -100,6 +100,8 @@
 .footer > button:disabled:hover {
   cursor: no-drop;
 }
+.footer > button:disabled,
+.footer > button:disabled:hover,
 .footer > button:active {
   opacity: 0.75;
 }
