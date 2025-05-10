@@ -16,11 +16,8 @@ export type CustomColors = {
 };
 
 type ColorTheme = {
-  dark: string;
-  gray: string;
-  lightGray: string;
-  light: string;
-  lightColor: string;
+  bgPrimary: string;
+  textPrimary: string;
+  layoutPrimary: string;
   primary: string;
-  highlightBorder: string;
 };

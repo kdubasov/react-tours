@@ -1,6 +1,6 @@
 # React-custom-tours 👩‍🏫🆘🔖
 
-🪲 We recommend installing version starting from 1.3.6 (previous versions have problems) <br>
+🪲 We recommend installing version starting from 1.7.0 <br>
 🎉 A library for creating step-by-step hints in your applications ([Click to open in npm](https://www.npmjs.com/package/react-custom-tours))<br>
 🧪 Tested on projects in production <br>
 🔧 Before each update, the library is checked by autotests <br>
@@ -83,11 +83,15 @@ function Main() {
       // custom tooltip colors for dark/light themes
       dark: {
         primary: '#0dcaf0',
-        highlightBorder: '#dc3545',
+        textPrimary: '#ffffff',
+        bgPrimary: '#808080',
+        layoutPrimary: 'rgba(9, 12, 23, .25)',
       },
       light: {
         primary: 'rgb(21,194,30)',
-        highlightBorder: 'rgba(158,113,255,0.42)',
+        textPrimary: '#808080',
+        bgPrimary: '#ffffff',
+        layoutPrimary: 'rgba(9, 12, 23, .25)',
       },
     }}
     highlightPadding={10} // padding for highlighting current block

@@ -4,7 +4,7 @@ import { useEscapeListener } from '@/shared/hooks/useEscapeListener.ts';
 import { usePropsColors } from '@/shared/hooks/usePropsColors.ts';
 import { useTips } from '@/shared/hooks/useTips.tsx';
 import { TipDataItemWithNode } from '@/shared/types';
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 type Props = {
@@ -13,7 +13,6 @@ type Props = {
 
 const TipsActiveLayout = ({ data }: Props) => {
   const { setIsShow, theme, escapeToClose, highlightPadding } = useTips();
-  const [isLoading, startTransition] = useTransition();
   const [activeItem, setActiveItem] = useState<TipDataItemWithNode>(data[0]);
   const [activeItemRect, setActiveItemRect] = useState<DOMRect>(activeItem?.node!.getBoundingClientRect());
   const ref = useRef<HTMLDivElement | null>(null);
@@ -22,16 +21,12 @@ const TipsActiveLayout = ({ data }: Props) => {
   const prevItem = data[data.indexOf(activeItem) - 1];
 
   const onNext = () => {
-    startTransition(() => {
-      setActiveItem(nextItem);
-      setActiveItemRect(nextItem?.node!.getBoundingClientRect());
-    });
+    setActiveItem(nextItem);
+    setActiveItemRect(nextItem?.node!.getBoundingClientRect());
   };
   const onPrev = () => {
-    startTransition(() => {
-      setActiveItem(prevItem);
-      setActiveItemRect(prevItem?.node!.getBoundingClientRect());
-    });
+    setActiveItem(prevItem);
+    setActiveItemRect(prevItem?.node!.getBoundingClientRect());
   };
 
   useEffect(() => {
@@ -59,7 +54,7 @@ const TipsActiveLayout = ({ data }: Props) => {
     setActiveItemRect(data[0]?.node!.getBoundingClientRect());
   }, [data]);
 
-  useEscapeListener(!!escapeToClose);
+  useEscapeListener(Boolean(escapeToClose));
   usePropsColors(ref);
 
   useEffect(() => {
@@ -101,7 +96,6 @@ const TipsActiveLayout = ({ data }: Props) => {
             onNext={onNext}
             onPrev={onPrev}
             onClose={() => setIsShow(false)}
-            isLoading={isLoading}
           />
         </div>
       </div>

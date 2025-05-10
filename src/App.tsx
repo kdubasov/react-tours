@@ -10,17 +10,15 @@ const App = () => {
       <MenuFeedback />
       <TipsProvider
         highlightPadding={10}
-        theme="light"
+        theme="dark"
         tips={tips}
         escapeToClose
         customColors={{
           dark: {
-            primary: '#0dcaf0',
-            highlightBorder: '#dc3545',
+            primary: '#6e0ed3',
           },
           light: {
-            primary: 'rgb(21,194,30)',
-            highlightBorder: 'rgba(158,113,255,0.42)',
+            primary: '#792502',
           },
         }}
       >

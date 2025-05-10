@@ -13,6 +13,7 @@ export const tips = [
   },
   {
     idx: 2,
+    maxWidth: 300,
     nodeId: 'test-2',
     title: 'Tip #2',
     text: 'Example text for block. Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.',

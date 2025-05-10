@@ -17,12 +17,12 @@ test('show tour', async ({ page }) => {
   await expect(page.getByTestId('tooltip-count')).toHaveText(`1 / ${tips.length}`);
   await expect(page.getByTestId('tooltip-title')).toHaveText(tips[0].title);
   await expect(page.getByTestId('tooltip-text')).toHaveText(tips[0].text);
-  await expect(page.getByTestId('tooltip-prev')).toBeDisabled();
+  await expect(page.getByTestId('tooltip-prev')).not.toBeVisible();
   await expect(page.getByTestId('tooltip-next')).not.toBeDisabled();
   await page.getByTestId('tooltip-next').click();
   await expect(page.getByTestId('tooltip-title')).toHaveText(tips[1].title);
   await expect(page.getByTestId('tooltip-text')).toHaveText(tips[1].text);
-  await expect(page.getByTestId('tooltip-prev')).not.toBeDisabled();
+  await expect(page.getByTestId('tooltip-prev')).toBeVisible();
   await page.getByTestId('tooltip-prev').click();
   await expect(page.getByTestId('tooltip-title')).toHaveText(tips[0].title);
   await expect(page.getByTestId('tooltip-text')).toHaveText(tips[0].text);
