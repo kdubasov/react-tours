@@ -1,6 +1,5 @@
 import styles from './Tooltip.module.css';
 import { useTips } from '@/shared/hooks/useTips.tsx';
-import { mockDomRect } from '@/shared/mock-data';
 import type { TipDataItemWithNode } from '@/shared/types';
 import Spinner from '@/shared/ui/spinner';
 import { type CSSProperties, useMemo, useRef } from 'react';
@@ -19,40 +18,41 @@ type Props = {
 };
 
 const Tooltip = (props: Props) => {
-  const { item, prevItem, nextItem, itemRect, countItems, itemIdx, isLoading, onPrev, onNext, onClose } = props;
-  const { isHiddenClose, highlightPadding } = useTips();
-  const margin = 10;
-  const style: CSSProperties = {};
+  const { item, itemRect, prevItem, nextItem, countItems, itemIdx, isLoading, onPrev, onNext, onClose } = props;
+  const { isHiddenClose } = useTips();
   const tooltipIndex = `${itemIdx + 1} / ${countItems}`;
-  const tooltipRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const isShowClose = useMemo(() => {
     if (!isHiddenClose) return true;
     return countItems - 1 === itemIdx;
   }, [itemIdx, countItems, isHiddenClose]);
 
-  const tooltipClientRect = tooltipRef?.current?.getBoundingClientRect() || mockDomRect;
-  const tooltipWidth = tooltipClientRect?.width || 0;
-  const highlightPaddingMargin = highlightPadding ?? 0;
-  const itemRectRight = window.innerWidth - itemRect.right;
-  const xMargin = itemRect.left + itemRect.width / 2 > window.innerWidth / 2 ? 'right' : 'left';
-  const xValue = xMargin === 'left' ? itemRect.left : itemRectRight;
-  const xMarginValue = tooltipWidth + xValue > window.innerWidth ? xValue * -1 + 8 : 0;
-  style.maxWidth = item?.maxWidth || itemRect.right;
-  if (itemRect.height > window.innerHeight - (tooltipClientRect?.height || 200)) {
-    style.top = margin;
-    style[xMargin] = xMarginValue || margin;
-  } else {
-    if (itemRect.top + itemRect.height / 2 > window.innerHeight / 2) {
-      style.bottom = itemRect.height + margin + highlightPaddingMargin;
-    } else {
-      style.top = itemRect.height + margin + highlightPaddingMargin;
-    }
-    style[xMargin] = xMarginValue;
-  }
+  // Тултип — обычный absolute внутри .block (без anchor(), иначе на webkit
+  // ломается хит-тест кнопок; fixed там же ломается). Сторону по вертикали
+  // задаём через data-v (CSS), горизонталь — инлайновым offset с клэмпом в
+  // пределы вьюпорта. Размеры тултипа берём из своего же ref (на следующий
+  // ре-рендер при смене rect значения становятся точными).
+  const margin = 10;
+  const tooltipHeight = wrapperRef.current?.offsetHeight ?? 220;
+  const tooltipWidth = wrapperRef.current?.offsetWidth ?? 320;
+  // v: ставим туда, где реально помещается — под (приоритет), иначе над, иначе
+  // поверх (overlap) — когда рядом места нет (высокий блок во весь экран)
+  const roomBelow = window.innerHeight - itemRect.bottom - margin;
+  const roomAbove = itemRect.top - margin;
+  const v = roomBelow >= tooltipHeight ? 'bottom' : roomAbove >= tooltipHeight ? 'top' : 'overlap';
+  // горизонталь: по умолчанию левый край тултипа = левый край блока; в режиме
+  // overlap тултип лежит ВНУТРИ подсветки, поэтому отступаем от её левого края
+  // (по вертикали такой отступ уже даёт CSS top: 10px). Затем зажимаем позицию
+  // в [8, vw - 8 - width], чтобы тултип не вылезал на узких экранах.
+  const blockLeft = itemRect.left;
+  const targetLeft = blockLeft + (v === 'overlap' ? margin : 0);
+  const clampedLeft = Math.max(8, Math.min(targetLeft, window.innerWidth - 8 - tooltipWidth));
+  const style: CSSProperties = { left: Math.round(clampedLeft - blockLeft) };
+  if (item?.maxWidth) style.maxWidth = Math.min(item.maxWidth, window.innerWidth - 16);
 
   return (
-    <div ref={tooltipRef} style={style} className={styles.wrapper}>
+    <div ref={wrapperRef} style={style} className={styles.wrapper} data-testid="tips-tooltip" data-v={v}>
       <header className={styles.header}>
         <div className={styles.leftHeader}>
           <span className={styles.count} data-testid="tooltip-count" title={`Номер подсказки - (${tooltipIndex})`}>

@@ -19,21 +19,28 @@
   --rct-text-primary: #f8f9fa;
 }
 
-.relative {
-  position: relative;
-  width: 100%;
-  height: inherit;
-}
-
 .block {
   will-change: auto;
   position: fixed;
-  border-radius: 12px;
+  /* CSS Anchor Positioning: короб нативно привязан к активному узлу
+     (anchor-name: --rct-anchor выставляется на узле из JS). Браузер сам
+     пересчитывает позицию при скролле любого контейнера и ресайзе. */
+  position-anchor: --rct-anchor;
+  top: calc(anchor(top) - var(--rct-highlight-padding, 0px) / 2);
+  left: calc(anchor(left) - var(--rct-highlight-padding, 0px) / 2);
+  width: calc(anchor-size(width) + var(--rct-highlight-padding, 0px));
+  height: calc(anchor-size(height) + var(--rct-highlight-padding, 0px));
+  /* по умолчанию совпадает с радиусом тултипа (20px); если у узла задан свой
+     inline border-radius — он переопределяет это через style в index.tsx */
+  border-radius: 20px;
   box-shadow: 0 0 0 10000px var(--rct-layout-primary);
   transition: 0.325s;
 }
 
-* {
+/* Скоупим под обёртку тура: глобальный `*` навязывал бы шрифт и сброс margin
+   всему хост-приложению. */
+.wrapper,
+.wrapper * {
   margin: 0;
 
   font-family: 'Inter', sans-serif;

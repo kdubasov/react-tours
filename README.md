@@ -42,17 +42,17 @@ import React from 'react';
 import { TipsProvider, useTips } from 'react-custom-tours/dist/app/main';
 
 function App() {
-  const { setShow } = useTips(); // you should use this hook inside the provider
+  const { setIsShow } = useTips(); // you should use this hook inside the provider
 
   // you can start showing tooltips when rendering the component, or add playback conditions
   // useEffect(() => {
-  //     setShow(true);
+  //     setIsShow(true);
   // }, []);
 
   return (
     <div>
       {/* click this button to start a tour */}
-      <button onClick={() => setShow(true)}>Show tips!</button>
+      <button onClick={() => setIsShow(true)}>Show tips!</button>
       <div id="tip-block">
         <h3>First block with tip!</h3>
       </div>

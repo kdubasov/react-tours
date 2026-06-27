@@ -1,4 +1,4 @@
-import Provider from '@/app/providers';
+import { TipsProvider } from '@/app/context/tips.tsx';
 import { useTips } from '@/shared/hooks/useTips.tsx';
 
-export { Provider as TipsProvider, useTips };
+export { TipsProvider, useTips };

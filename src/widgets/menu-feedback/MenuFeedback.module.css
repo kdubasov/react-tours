@@ -1,15 +1,21 @@
 .wrapper {
-  flex: 1;
-  padding: 0.5em;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid var(--rct-gray-300);
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e7e7f2;
 }
 .wrapper > small {
+  font-size: 13px;
+  color: #6b6f86;
   text-align: center;
 }
 .wrapper > small > a {
-  color: var(--primary);
+  color: #6e5ffc;
   text-decoration: none;
   font-weight: 600;
+}
+.wrapper > small > a:hover {
+  text-decoration: underline;
 }

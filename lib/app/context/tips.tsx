@@ -1,29 +1,19 @@
 import TipsLayout from '@/features/tips-layout';
-import { CustomColors, TipDataItem, TipDataItemWithNode } from '@/shared/types';
+import { TipDataItem, TipDataItemWithNode, TipsConfig } from '@/shared/types';
 import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useMemo, useState } from 'react';
 
-type AuthContext = {
+type TipsContextValue = TipsConfig & {
   data: null | TipDataItemWithNode[];
   isShow: boolean;
   setIsShow: Dispatch<SetStateAction<boolean>>;
-  theme?: 'dark' | 'light';
-  escapeToClose?: boolean;
-  customColors?: CustomColors;
-  isHiddenClose?: boolean;
-  highlightPadding?: number;
 };
 
-type Props = {
+type Props = TipsConfig & {
   children: ReactNode;
   tips: TipDataItem[];
-  theme?: 'dark' | 'light';
-  customColors?: CustomColors;
-  escapeToClose?: boolean;
-  isHiddenClose?: boolean;
-  highlightPadding?: number;
 };
 
-export const TipsContext = createContext<AuthContext>({} as AuthContext);
+export const TipsContext = createContext<TipsContextValue>({} as TipsContextValue);
 
 export const TipsProvider = (props: Props) => {
   const { children, tips, theme, customColors, escapeToClose, isHiddenClose, highlightPadding } = props;

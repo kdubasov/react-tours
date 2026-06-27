@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-body {
-  font-family: 'Roboto', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Space+Grotesk:wght@400..700&display=swap');
 
 :root {
   --black: #000;
@@ -18,7 +14,7 @@ body {
   --gray-700: #495057;
   --gray-800: #343a40;
   --gray-900: #212529;
-  --primary: #0d6efd;
+  --primary: #6e5ffc;
   --secondary: #6c757d;
   --success: #198754;
   --info: #0dcaf0;
@@ -26,12 +22,25 @@ body {
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #212529;
-
-  --rtc-dark: red;
 }
 
 * {
   margin: 0;
   padding: 0;
-  outline-color: var(--rct-primary);
+  box-sizing: border-box;
+  outline-color: var(--primary);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #14152b;
+  background: #f4f5fb;
+  /* мягкое сияние брендовым цветом сверху */
+  background-image: radial-gradient(120% 60% at 50% -10%, #ece9ff 0%, #f4f5fb 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  min-height: 100vh;
 }

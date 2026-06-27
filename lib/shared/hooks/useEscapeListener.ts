@@ -1,17 +1,19 @@
-import { useTips } from '@/shared/hooks/useTips';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-export const useEscapeListener = (isListen: boolean) => {
-  const { setIsShow } = useTips();
+/**
+ * Вызывает onEscape по нажатию Escape, пока isListen=true.
+ * Колбэк держим в ref, чтобы не переподписывать слушатель на каждый рендер.
+ */
+export const useEscapeListener = (isListen: boolean, onEscape: () => void) => {
+  const onEscapeRef = useRef(onEscape);
+  onEscapeRef.current = onEscape;
 
   useEffect(() => {
     if (!isListen) return;
-    const onClose = (e: KeyboardEvent) => {
-      if (e.code === 'Escape') {
-        setIsShow(false);
-      }
+    const handler = (e: KeyboardEvent) => {
+      if (e.code === 'Escape') onEscapeRef.current();
     };
-    window.addEventListener('keydown', onClose);
-    return () => window.removeEventListener('keydown', onClose);
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
   }, [isListen]);
 };

@@ -1,66 +1,238 @@
-.wrapper {
-  padding: 1em 15%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
+.page {
+  /* локальные токены демо */
+  --ink: #14152b;
+  --muted: #6b6f86;
+  --accent: #6e5ffc;
+  --accent-soft: #efedff;
+  --surface: #ffffff;
+  --border: #e7e7f2;
+
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+  display: grid;
+  gap: 56px;
 }
 
-.header {
-  width: 100%;
+/* ---- hero ---- */
+.hero {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+  max-width: 640px;
 }
-.header > button {
-  padding: 0.65em 2.5em;
-  border: 1px solid var(--success);
-  background: var(--success);
-  color: var(--light);
-  border-radius: 10px;
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+}
+.title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(38px, 6vw, 60px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.title em {
+  font-style: normal;
+  color: var(--accent);
+}
+.lead {
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.cta {
+  margin-top: 6px;
+  padding: 14px 28px;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 16px;
-  transition: 0.15s;
-}
-.header > button:hover {
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 0 12px var(--dark);
+  box-shadow: 0 10px 26px -10px var(--accent);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -12px var(--accent);
+}
+.cta:active {
+  transform: translateY(0);
 }
 
-.test1 {
-  width: 50%;
-  padding: 15px;
-  border: 1px solid var(--primary);
-  border-radius: 10px;
+/* ---- feature grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
 }
-.test2 {
-  width: 25%;
-  padding: 15px;
-  border: 1px solid var(--info);
-  border-radius: 10px;
+.card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
-.test3 {
-  width: 75%;
-  padding: 15px;
-  border: 1px solid var(--danger);
-  border-radius: 10px;
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 22px 48px -28px rgba(20, 21, 43, 0.45);
 }
-.test4 {
-  width: 100%;
-  height: 75vh;
-  padding: 15px;
+.card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.card p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.stop {
+  justify-self: start;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 11px;
+  border-radius: 999px;
+}
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+.colWide {
+  grid-column: span 4;
+}
+.colNarrow {
+  grid-column: span 2;
+}
+.colFull {
+  grid-column: 1 / -1;
+}
+.colTall {
+  grid-column: 1 / -1;
+  min-height: 72vh;
+  background: radial-gradient(80% 120% at 100% 0%, var(--accent-soft) 0%, transparent 55%), var(--surface);
+}
+.tallHint {
+  align-self: end;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  color: var(--muted);
+}
 
-  border: 1px solid var(--secondary);
-  border-radius: 10px;
+/* ---- scroll demos ---- */
+.scrollDemo {
+  display: grid;
+  gap: 18px;
 }
-.test5 {
-  width: 150px;
-  padding: 15px;
-  border: 2px solid var(--success);
-  border-radius: 30px;
+.scrollHead h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
-.test6 {
-  width: 100%;
-  padding: 25px;
-  border: 2px solid var(--warning);
-  border-radius: 3px;
+.scrollHead p {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.scrollY {
+  max-height: 360px;
+  overflow-y: auto;
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  background: linear-gradient(180deg, #fbfbff, #f2f1fb);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+.scrollX {
+  overflow-x: auto;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 280px;
+  gap: 14px;
+  padding: 16px;
+  background: linear-gradient(90deg, #fbfbff, #f2f1fb);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.scrollCard {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.scrollCard h3,
+.filler h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.scrollCard p,
+.filler p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* нейтральные «прокладки», чтобы контейнер реально скроллился */
+.filler {
+  display: grid;
+  gap: 8px;
+  align-content: center;
+  min-height: 120px;
+  padding: 22px;
+  background: repeating-linear-gradient(135deg, #ffffff 0 12px, #f6f5fd 12px 24px);
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  color: var(--muted);
+}
+
+/* ---- responsive ---- */
+@media (max-width: 760px) {
+  .page {
+    padding: 40px 18px 72px;
+    gap: 44px;
+  }
+  .colWide,
+  .colNarrow {
+    grid-column: 1 / -1;
+  }
 }
