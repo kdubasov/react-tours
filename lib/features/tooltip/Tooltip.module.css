@@ -152,14 +152,9 @@
 }
 @media (max-width: 560px) {
   .textWrapper > h4 {
-    font-size: 16px;
+    font-size: 18px;
   }
   .footer > button:last-child {
     flex: 1;
-  }
-}
-@media (max-width: 375px) {
-  .textWrapper > p {
-    font-size: 12px;
   }
 }
