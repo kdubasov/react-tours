@@ -69,11 +69,19 @@ customColors, theme)`). Единственное санкционированн�
 
 ## Позиционирование
 
-**Подсветка** (`.block`) позиционируется **нативно** через CSS Anchor Positioning
-(`anchor-name`/`position-anchor`/`anchor()`/`anchor-size()`), без JS-трекинга координат и
-scroll/resize-листенеров. Браузер сам держит её на цели при скролле (в т.ч. вложенных
-контейнеров) и ресайзе. Активному узлу `anchor-name` выставляется из JS в `useLayoutEffect`
-(до отрисовки); из JS приходит только `--rct-highlight-padding` и `border-radius`.
+**Подсветка** (`.block`) по умолчанию позиционируется **нативно** через CSS Anchor
+Positioning (`anchor-name`/`position-anchor`/`anchor()`/`anchor-size()`), без JS-трекинга
+координат. Браузер сам держит её на цели при скролле (в т.ч. вложенных контейнеров) и
+ресайзе. Активному узлу `anchor-name` выставляется из JS в `useLayoutEffect` (до отрисовки);
+из JS приходит только `--rct-highlight-padding` и `border-radius`.
+
+**JS-фолбэк для движков без `anchor()`** (iOS Safari < 18.2, Firefox < 132): поддержку
+детектим один раз (`hasNativeAnchor` в `shared/utils/anchor.ts`). Если её нет — `anchor-name`
+на узел НЕ ставим (бесполезен), а `.block` кладём инлайновыми `top/left/width/height` из
+`activeItemRect` (`anchorFallbackStyle`), перебивая невалидный CSS `anchor()`. Это НЕ откат к
+JS-трекингу как основному пути — на современных движках работает чистый нативный anchor;
+фолбэк — деградация, чтобы тур работал везде. Отдельного scroll/resize-листенера фолбэк не
+заводит: он переиспользует тот же `activeItemRect`, что уже трекается для тултипа.
 
 **Тултип НЕ использует `anchor()`** — он обычный `position: absolute` внутри `.block`.
 
@@ -88,11 +96,12 @@ scroll/resize-листенеров. Браузер сам держит её на
 >   узких экранах. `itemRect` обновляется на scroll(capture)+resize; `state` меняется только
 >   при изменении геометрии — лишних ре-рендеров нет, а `.block` тянет тултип за собой.
 
-- Подсветка требует Baseline-2026 (Chrome/Edge 125+, Firefox 132+, Safari 18.2+). На
-  движках без `anchor()` подсветка спозиционируется неверно — сознательный выбор; старый
-  JS-трекинг координат НЕ возвращай.
-- e2e на anchor positioning должны `test.skip`, если `CSS.supports('top: anchor(top)')`
-  ложно, иначе проверка нерелевантна. Гоняй позиционные тесты минимум на chromium И webkit.
+- Нативный путь требует Baseline-2026 (Chrome/Edge 125+, Firefox 132+, Safari 18.2+); ниже
+  включается JS-фолбэк (см. выше). Не превращай фолбэк в основной путь и не тащи назад
+  постоянный JS-трекинг координат на поддерживающих движках — там только нативный `anchor()`.
+- e2e **нативного** пути должны `test.skip`, если `CSS.supports('top: anchor(top)')` ложно.
+  Тест **фолбэка** (`verify-anchor.spec.ts`) эмулирует отсутствие anchor (stub `CSS.supports`
+  + `anchor-name: none`) и гоняется на всех движках. Позиционные тесты — минимум chromium И webkit.
 
 ## Соглашения об именовании
 

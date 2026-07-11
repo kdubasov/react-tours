@@ -104,6 +104,35 @@ test('native anchor: при ручном скролле вложенного к�
   expect(Math.abs(after.target.top - before.target.top), 'элемент сместился при скролле').toBeGreaterThan(20);
 });
 
+// Фолбэк для движков без CSS Anchor Positioning (iOS Safari < 18.2, Firefox < 132):
+// подсветку либа обязана позиционировать на JS, и она должна совпадать с целью.
+// Эмулируем отсутствие нативного anchor двумя шагами: (1) детект в либе -> false
+// (stub CSS.supports), (2) реально глушим native anchor() (anchor-name: none),
+// чтобы без JS-фолбэка коробка схлопывалась в угол. Тест гоняется на ВСЕХ движках.
+test('fallback (без нативного anchor): подсветка совпадает с целью на всех шагах', async ({ page }) => {
+  await page.addInitScript(() => {
+    const orig = CSS.supports.bind(CSS);
+    (CSS as unknown as { supports: (p: string, v?: string) => boolean }).supports = (prop, value) =>
+      prop === 'anchor-name' ? false : value === undefined ? orig(prop) : orig(prop, value);
+  });
+  await page.goto('/');
+  // глушим native anchor() полностью — иначе на движке с поддержкой коробка встанет
+  // нативно и тест не проверит именно JS-фолбэк
+  await page.addStyleTag({ content: '* { anchor-name: none !important; }' });
+
+  await page.locator('button:has-text("Show tips")').click();
+  await expect(page.getByTestId('tips-active-layout')).toBeVisible();
+
+  for (let i = 0; i < tips.length; i++) {
+    await expect(page.getByTestId('tooltip-title')).toHaveText(tips[i].title);
+    await page.waitForTimeout(500);
+    const m = await measure(page, tips[i].nodeId);
+    assertTooltipInViewport(m, `fallback шаг ${i} (${tips[i].nodeId})`);
+    assertHighlightOnTarget(m, `fallback шаг ${i} (${tips[i].nodeId})`);
+    if (i < tips.length - 1) await page.getByTestId('tooltip-next').click();
+  }
+});
+
 test('native anchor: на узком экране тултип не вылезает за края', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await page.goto('/');

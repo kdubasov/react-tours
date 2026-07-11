@@ -4,6 +4,7 @@ import { useEscapeListener } from '@/shared/hooks/useEscapeListener.ts';
 import { usePropsColors } from '@/shared/hooks/usePropsColors.ts';
 import { useTips } from '@/shared/hooks/useTips.tsx';
 import type { TipDataItemWithNode } from '@/shared/types';
+import { anchorFallbackStyle, hasNativeAnchor } from '@/shared/utils/anchor.ts';
 import { type CSSProperties, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -20,6 +21,8 @@ const TipsActiveLayout = ({ data }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [activeItemRect, setActiveItemRect] = useState<DOMRect>(() => new DOMRect());
+  // Поддержку anchor определяем один раз — в рамках сессии она не меняется.
+  const [supportsAnchor] = useState(hasNativeAnchor);
 
   const nextItem = data[data.indexOf(activeItem) + 1];
   const prevItem = data[data.indexOf(activeItem) - 1];
@@ -56,14 +59,15 @@ const TipsActiveLayout = ({ data }: Props) => {
   // Браузер сам держит .block на месте при любом скролле (включая вложенные
   // контейнеры) и ресайзе — JS-трекинг координат больше не нужен.
   // useLayoutEffect — чтобы выставить якорь до отрисовки и избежать мигания.
+  // На движках без anchor() якорь бесполезен — там позицию даёт JS-фолбэк ниже.
   useLayoutEffect(() => {
     const node = activeItem?.node;
-    if (!node) return;
+    if (!node || !supportsAnchor) return;
     node.style.setProperty('anchor-name', ANCHOR_NAME);
     return () => {
       node.style.removeProperty('anchor-name');
     };
-  }, [activeItem]);
+  }, [activeItem, supportsAnchor]);
 
   useEffect(() => {
     const node = activeItem?.node;
@@ -135,6 +139,9 @@ const TipsActiveLayout = ({ data }: Props) => {
             // Сюда отдаём только динамический паддинг подсветки и радиус.
             '--rct-highlight-padding': `${highlightPadding || 0}px`,
             borderRadius: activeItem?.node?.style.borderRadius || undefined,
+            // Фолбэк для движков без anchor(): позиционируем короб на JS из
+            // уже трекаемого activeItemRect, перебивая невалидный CSS anchor().
+            ...(supportsAnchor ? undefined : anchorFallbackStyle(activeItemRect, highlightPadding || 0)),
           } as CSSProperties
         }
       >
